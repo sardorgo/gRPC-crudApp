@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/sardorgo/myapp/proto";
+
+service UserProfiles {
+    rpc CreateUser (CreateUserProfileRequest) returns (UserProfile) {}
+    rpc GetUser (GetUserProfileRequest) returns (UserProfile) {}
+    rpc UpdateUser (UpdateUserProfileRequest) returns (UserProfile) {}
+    rpc DeleteUser (DeleteUserProfileRequest) returns (Empty) {}
+    rpc ListUsers (ListUsersRequest) returns (ListUsersResponse) {}
+}
+
+message UserProfile {
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+}
+
+message CreateUserProfileRequest {
+    UserProfile user_profile = 1;
+}
+
+message GetUserProfileRequest {
+    string user_id = 1;
+}
+
+message UpdateUserProfileRequest {
+    UserProfile user_profile = 1;
+}
+
+message DeleteUserProfileRequest {
+    string user_id = 1;
+}
+
+message ListUsersRequest {}
+
+message ListUsersResponse{
+    repeated UserProfile profiles=1;
+}
+
+message Empty {}
